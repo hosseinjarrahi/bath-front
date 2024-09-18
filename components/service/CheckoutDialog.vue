@@ -66,6 +66,7 @@ const defineFields = (thiz) => {
       props: {
         type: 'number',
       },
+      default: 0,
       rules: ['required'],
       col: { md: 6 },
     },
@@ -92,6 +93,10 @@ const defineFields = (thiz) => {
 
 export default {
   components: { DynamicForm },
+
+  props: {
+    payMethod: {},
+  },
 
   data() {
     return {
@@ -120,11 +125,17 @@ export default {
     pay() {
       const price = +this.form.damage + +this.delayPrice
 
-      pos.send(price, '/payment/' + this.passengerForm.id, (data) => {
-        this.addPayment(data, price).then(() => {
+      if (this.payMethod === 'pos') {
+        pos.send(price, '/payment/' + this.passengerForm.id, (data) => {
+          this.addPayment(data, price).then(() => {
+            this.checkout()
+          })
+        })
+      } else {
+        this.addPayment({ rrn: 'pos' }, price).then(() => {
           this.checkout()
         })
-      })
+      }
     },
 
     addPayment(trace, price) {

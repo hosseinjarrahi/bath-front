@@ -19,7 +19,7 @@ export default function (val) {
       col: { md: 12 },
     },
     {
-      title: 'اسکان',
+      title: 'سرویس',
       field: 'active_service_items',
       type: 'text',
       showIn: ['show'],
@@ -41,9 +41,8 @@ export default function (val) {
         format: 'YYYY-MM-DD HH:mm',
         type: 'datetime',
       },
-      default: '',
       inList(date) {
-        return new Date(date).toLocaleString('fa-IR')
+        if (date) return new Date(date).toLocaleString('fa-IR')
       },
     },
     {
@@ -55,9 +54,6 @@ export default function (val) {
         format: 'YYYY-MM-DD HH:mm:ss',
         type: 'datetime',
       },
-      rules: ['required'],
-      col: { md: 6 },
-      default: '',
       inList(date) {
         return new Date(date).toLocaleString('fa-IR')
       },
@@ -67,29 +63,12 @@ export default function (val) {
       field: 'end_date',
       type: 'date',
       isHeader: true,
-      rules: ['required'],
-      col: { md: 6 },
       props: {
         format: 'YYYY-MM-DD HH:mm:ss',
         type: 'datetime',
       },
-      default: '',
       inList(date) {
         return new Date(date).toLocaleString('fa-IR')
-      },
-    },
-    {
-      title: 'خسارت (تومان)',
-      field: 'damage',
-      type: 'text',
-      isHeader: true,
-      rules: ['required'],
-      props: {
-        type: 'number',
-      },
-      col: { md: 6 },
-      inList(amount) {
-        return formatNumber(amount)
       },
     },
     {
@@ -161,6 +140,32 @@ export default function (val) {
       },
       rules: ['required'],
       col: { md: 6 },
+    },
+    {
+      title: 'زمان سپری شده',
+      field: 'past_time',
+      type: 'text',
+      isHeader: true,
+      inList(time) {
+        return time.replace('پس از', '').replace('پیش از', '')
+      },
+    },
+    {
+      title: 'زمان باقی مانده',
+      field: 'remained_time',
+      type: 'text',
+      isHeader: true,
+      inList(remainedMinutes) {
+        if (!remainedMinutes.includes('دیگر')) {
+          return `<span class="px-4 py-1 white--text rounded-lg error">${remainedMinutes
+            .replace('پس از', '')
+            .replace('پیش از', '')}</span>`
+        } else {
+          return `<span class="px-4 py-1 white--text rounded-lg info">${remainedMinutes
+            .replace('پس از', '')
+            .replace('پیش از', '')}</span>`
+        }
+      },
     },
   ]
 }

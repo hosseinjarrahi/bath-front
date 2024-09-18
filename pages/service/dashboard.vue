@@ -10,7 +10,7 @@
             {{ getSafe(analyse, 'emptyServiceItems', 0) }} نفر </span
           >|
           <span class="mx-2">
-            اسکان داده شده :
+            سرویس داده شده :
             {{ getSafe(analyse, 'fullServiceItems', 0) }} نفر </span
           >|
           <span class="mx-2">

@@ -1,13 +1,13 @@
 <template>
   <div class="d-flex flex-row flex-wrap justify-center">
     <div class="col-12 col-md-3">
-      <CardWidget title="پر استفاده ترین تخت ها">
+      <CardWidget title="پر استفاده ترین حمام ها">
         <v-chip v-for="(service, index) in getSafe(report, 'beds', [])" :key="index" class="ma-1">
           {{
-            'اتاق: ' +
+            'سرویس: ' +
             getSafe(service, 'service.bed_room.name') +
             ' ::: ' +
-            'تخت: ' +
+            'حمام: ' +
             getSafe(service, 'service.number') +
             ' ::: ' +
             'تعداد رزرو:' +
@@ -17,13 +17,13 @@
       </CardWidget>
     </div>
     <div class="col-12 col-md-3">
-      <CardWidget title="کم استفاده ترین تخت ها">
+      <CardWidget title="کم استفاده ترین حمام ها">
         <v-chip v-for="(service, index) in getSafe(report, 'low_beds', [])" :key="index" class="ma-1">
           {{
-            'اتاق: ' +
+            'سرویس: ' +
             getSafe(service, 'service.bed_room.name') +
             ' ::: ' +
-            'تخت: ' +
+            'حمام: ' +
             getSafe(service, 'service.number') +
             ' ::: ' +
             'تعداد رزرو:' +

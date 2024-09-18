@@ -22,7 +22,7 @@
             border: 2px solid var(--v-mamadback-base);
           "
         >
-          سامانه مدیریت پایانه
+          سامانه مدیریت حمام
         </div>
       </div>
 

@@ -2866,3 +2866,8 @@ footer {
   height: auto;
   width: 100%;
 }
+
+.v-input--radio-group.v-input--radio-group--row .v-radio{
+  margin-right:0 !important;
+  margin-left: 16px !important;
+}
