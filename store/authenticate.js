@@ -108,7 +108,7 @@ const actions = {
         data: payload,
       })
       .then((response) => {
-        this.$router.push('/admin/dashboard')
+        this.$router.push('/service/dashboard')
       })
       .catch((error) => {
         Vue._event('captcha')
@@ -235,7 +235,7 @@ const actions = {
     commit('resetErrors')
     commit('setLoading', true)
     this.$axios
-      .$post('/change-password', {
+      .$post('/user/change-password', {
         reset_token: state.resetToken,
         ...payload,
       })

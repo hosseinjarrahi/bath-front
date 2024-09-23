@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Majra from 'majra'
 
 export default ({store, $axios}) => {
+  $axios.defaults.headers.common['X-Database-Connection'] = localStorage.getItem('bath')
+
   Vue.use(Majra, {
     store,
     configs: {

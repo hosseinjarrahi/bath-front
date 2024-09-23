@@ -1,15 +1,5 @@
-// const domain = 'https://api.add-app.ir/'
-const websocketDomain = 'wss://socket.add-app.ir/'
-
-
-// const domain = 'http://bandar-api.test/'
-const domain = 'http://127.0.0.1:8000/'
-// const domain = 'http://185.145.187.250:8080/'
-// const domain = 'http://46.148.36.110:8080/'
-
-// local
-// const domain = 'http://172.16.150.2:8080/'
-// const websocketDomain = 'ws://172.16.150.2:3232/'
+// const domain = 'http://127.0.0.1:8000/'
+const domain = 'https://bath-api.add-app.ir/'
 
 export default {
   ssr: false,
@@ -66,7 +56,6 @@ export default {
   },
 
   env: {
-    websocketDomain,
     baseURL: domain,
     uploadPath: domain + 'api/upload-file',
     posCallbackUrl: domain + 'api/callback',

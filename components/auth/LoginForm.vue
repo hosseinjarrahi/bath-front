@@ -20,6 +20,19 @@
       @click:append="show1 = !show1"
     />
 
+    <v-autocomplete
+      v-model="bath"
+      outlined
+      dense
+      :items="[
+        { text: 'حمام غربی', value: 'east' },
+        { text: 'حمام شرقی', value: 'west' },
+      ]"
+      label="حمام"
+      append-icon="fal fa-building"
+      :rules="passwordRules"
+    />
+
     <v-img :src="image" class="rounded-lg" />
 
     <v-text-field
@@ -41,10 +54,6 @@
       <span>ورود</span>
       <v-icon right small>fal fa-arrow-left</v-icon>
     </v-btn>
-    <!-- <v-btn class="mt-3" text block to="/reset-password">
-      <v-icon left>fal fa-key</v-icon>
-      <span>فراموشی رمز عبور</span>
-    </v-btn> -->
   </v-form>
 </template>
 
@@ -64,6 +73,7 @@ export default {
         key: '',
         captcha: '',
       },
+      bath: 'west',
       image: '',
       show1: false,
       isValid: false,
@@ -79,6 +89,13 @@ export default {
     }),
   },
 
+  watch: {
+    bath(val) {
+      this.$axios.defaults.headers.common['X-Database-Connection'] = val
+      localStorage.setItem('bath', val)
+    },
+  },
+
   created() {
     this.getCaptcha()
     this._listen('captcha', () => {
@@ -87,13 +104,13 @@ export default {
   },
 
   methods: {
+    toEnglishDigits,
     ...mapActions({
       LOGIN: 'authenticate/login',
     }),
     login() {
       this.isValid && this.LOGIN(this.form)
     },
-    toEnglishDigits,
     getCaptcha() {
       this.$axios.$get('/captcha').then((res) => {
         this.form.key = res[0].key
