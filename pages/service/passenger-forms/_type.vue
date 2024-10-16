@@ -1,26 +1,26 @@
 <template>
   <DynamicTemplate>
-    <template #actions="item">
-      <v-btn
-        v-if="getSafe(item, 'balance', 0) > 0"
-        small
-        text
-        @click="pay(item)"
-      >
-        <v-icon small left>fal fa-money-bill</v-icon>
-        <span>پرداخت</span>
-      </v-btn>
-      <v-btn
-        v-else
-        :disabled="!getSafe(item, 'passenger.has_residence')"
-        small
-        text
-        @click="_event('checkout.dialog', item)"
-      >
-        <v-icon small left>fal fa-check</v-icon>
-        <span>تسویه</span>
-      </v-btn>
-    </template>
+      <template #actions="item">
+        <v-btn
+          v-if="getSafe(item, 'balance', 0) > 0"
+          small
+          text
+          @click="pay(item)"
+        >
+          <v-icon small left>fal fa-money-bill</v-icon>
+          <span>پرداخت</span>
+        </v-btn>
+        <v-btn
+          v-else
+          :disabled="!getSafe(item, 'passenger.has_residence')"
+          small
+          text
+          @click="_event('checkout.dialog', item)"
+        >
+          <v-icon small left>fal fa-check</v-icon>
+          <span>تسویه</span>
+        </v-btn>
+      </template>
 
     <template #header-btn>
       <div
@@ -63,8 +63,8 @@
 </template>
 
 <script>
-import pos from '~/helpers/pos'
 import fields from './fields'
+import pos from '~/helpers/pos'
 import { DynamicTemplate } from 'majra'
 import { get as getSafe } from 'lodash'
 import { connector } from '~/helpers/osConnector'
